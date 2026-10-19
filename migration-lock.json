@@ -1,0 +1,234 @@
+{
+  "upstream_manifest": "70e0709af41b0da22e1a1d729df61ac28a17a625",
+  "branch": "livall",
+  "projects": [
+    {
+      "path": ".",
+      "name": "k230_rtos_sdk",
+      "upstream": "kendryte/k230_rtos_sdk",
+      "base": "4bfcebb0b56bb4c2c02f8438c1308fa37bd12a18",
+      "commit": "c3934b8aff82cbc1cd5081bd0d7a84b8c1ba8c09",
+      "files": [
+        "tests/pmu/test_pmu_host.py"
+      ]
+    },
+    {
+      "path": "src/uboot/uboot",
+      "name": "u-boot",
+      "upstream": "canmv-k230/u-boot",
+      "base": "56a131d12108009012eca0204e7dd610a3e7d618",
+      "commit": "ac20bb1d992d5514a064849fc206e58dee7aaf6d",
+      "files": [
+        "arch/riscv/dts/k230d_canmv_bpi_zero.dts"
+      ]
+    },
+    {
+      "path": "src/rtsmart/rtsmart",
+      "name": "rtsmart",
+      "upstream": "canmv-k230/rtsmart",
+      "base": "773612b14769775b9ee0520db02856d34a6536b5",
+      "commit": "5ab93de59ecb1ef137c9aebeff1dceda28957489",
+      "files": [
+        "kernel/bsp/maix3/configs/k230d_canmv_bpi_zero_defconfig",
+        "kernel/bsp/maix3/drivers/interdrv/Kconfig",
+        "kernel/bsp/maix3/drivers/interdrv/pmu/drv_pmu.c",
+        "kernel/bsp/maix3/drivers/interdrv/pmu/pmu_priv.h",
+        "kernel/bsp/maix3/drivers/interdrv/pmu/pmu_pwrkey.c",
+        "kernel/bsp/maix3/drivers/interdrv/pmu/pmu_userdev.c",
+        "kernel/bsp/maix3/drivers/interdrv/pmu/pmu_int4_monitor.h"
+      ]
+    },
+    {
+      "path": "src/rtsmart/libs",
+      "name": "k230_rtsmart_lib",
+      "upstream": "canmv-k230/k230_rtsmart_lib",
+      "base": "edaf07b3cc7feb51fa356d7383b808ec55616919",
+      "commit": "52a6935db9695d68c790a6beeebfa63a403d7be4",
+      "files": [
+        "rtsmart_hal/drivers/pmu/drv_pmu.c",
+        "rtsmart_hal/drivers/pmu/drv_pmu.h"
+      ]
+    },
+    {
+      "path": "src/canmv",
+      "name": "canmv_k230",
+      "upstream": "kendryte/canmv_k230",
+      "base": "8f620e570e90363678bd2fb9fdb22f4e16ba8fbf",
+      "commit": "0dd20553735b5d566698bca977c595e66764858a",
+      "files": [
+        "port/machine/modmachine.c",
+        "port/machine/machine_pmu.c"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "path": ".",
+      "upstream": "kendryte/k230_rtos_sdk",
+      "head": "4bfcebb0b56bb4c2c02f8438c1308fa37bd12a18",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/uboot/uboot",
+      "upstream": "canmv-k230/u-boot",
+      "head": "56a131d12108009012eca0204e7dd610a3e7d618",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/opensbi/opensbi",
+      "upstream": "canmv-k230/opensbi",
+      "head": "ea1ceab9f0af65251e4a5c7d943a1cfa5e9002d6",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/rtsmart",
+      "upstream": "canmv-k230/rtsmart",
+      "head": "773612b14769775b9ee0520db02856d34a6536b5",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs",
+      "upstream": "canmv-k230/k230_rtsmart_lib",
+      "head": "edaf07b3cc7feb51fa356d7383b808ec55616919",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/kmodel",
+      "upstream": "canmv-k230/nncase_kmodels_v2_11",
+      "head": "830f035e8907b89015e15c4a85cf7f59e06c4175",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/examples",
+      "upstream": "canmv-k230/k230_rtsmart_examples",
+      "head": "1358c5118d1d97bd2bd6d511565b9e86001d96fe",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/mpp",
+      "upstream": "canmv-k230/mpp",
+      "head": "e27cdd28679716da7dad1719d18631812719487d",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/rtsmart/kernel/bsp/maix3/drivers/extdrv/aic8800/firmware",
+      "upstream": "canmv-k230/aic8800_fw",
+      "head": "2a47560abfa473ef7bff32321ef3db94a469d92d",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/freetype/freetype",
+      "upstream": "freetype/freetype",
+      "head": "1452355de99d22b0cba6ccc17bf5cdf3682ef61e",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/mbedtls/mbedtls",
+      "upstream": "canmv-k230/mbedtls",
+      "head": "a3ff9bce6b1c554a91bb3ced0f83046442a1694c",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/mqttclient/mqttclient",
+      "upstream": "jiejieTop/mqttclient",
+      "head": "956e0c8dcac02d4b107ccb49f1990c7718b6b585",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/lvgl/lvgl",
+      "upstream": "lvgl/lvgl",
+      "head": "c016f72d4c125098287be5e83c0f1abed4706ee5",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/cjson/cJSON",
+      "upstream": "DaveGamble/cJSON",
+      "head": "fb16e5cf358798aabb049655975cde8427101056",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/libwebsockets/libwebsockets",
+      "upstream": "warmcat/libwebsockets",
+      "head": "9e7b013a5c14df607269af705a79d958a6c707ff",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/libs/3rd-party/nimble/nimble",
+      "upstream": "apache/mynewt-nimble",
+      "head": "70da7f3a05c3ded36c08c56e481fb400c5c29bac",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/rtsmart/examples/3rd-party/iperf/iperf",
+      "upstream": "esnet/iperf",
+      "head": "c9b74229d0d9bfec6d2307b66b43c29a7665ad0b",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv",
+      "upstream": "kendryte/canmv_k230",
+      "head": "8f620e570e90363678bd2fb9fdb22f4e16ba8fbf",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/micropython",
+      "upstream": "canmv-k230/micropython",
+      "head": "0295137e60c0de862c8ee72d81c88d9e57e3973b",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/micropython/lib/micropython-lib",
+      "upstream": "micropython/micropython-lib",
+      "head": "e025c843b60e93689f0f991d753010bb5bd6a722",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/micropython/lib/mynewt-nimble",
+      "upstream": "micropython/mynewt-nimble",
+      "head": "42849560ba7906f023f61e5f7ff3709ba2c1dfca",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/resources/ybsdcard",
+      "upstream": "canmv-k230/ybsdcard",
+      "head": "c6ce8fab643c8aad22b0db97b9ff1f10d4fd8d94",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/port/3rd-party/lv_bindings/lvgl",
+      "upstream": "lvgl/lvgl",
+      "head": "1bfdecf585bb50fbb22ed1c38450b5c9eb600196",
+      "github_has_commit": true,
+      "error": null
+    },
+    {
+      "path": "src/canmv/port/3rd-party/lv_bindings/pycparser",
+      "upstream": "eliben/pycparser",
+      "head": "3cf6bf5eb16f5eadd4a058e41596145c407a79ad",
+      "github_has_commit": true,
+      "error": null
+    }
+  ]
+}
