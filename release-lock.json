@@ -59,7 +59,7 @@
         "de7faac",
         "f4a4aa8"
       ],
-      "commit": "29f6bb8d25e87c6b1a66a903f90f74c3fa252ab2",
+      "commit": "d4da35320e4db23cabc82293595b7bfa20cd59b2",
       "changed_from_release": [
         "kernel/bsp/maix3/components/Kconfig",
         "kernel/bsp/maix3/components/canmv_usb/usbd_adb.c",
@@ -134,7 +134,7 @@
         "tests/pmu/upstream-upgrade-20261019.json",
         "tests/pmu/validate_pre_sync.py"
       ],
-      "commit": "f1eff75e584c65d4f48003f6448cf764e0143b89",
+      "commit": "70ec2ea52634d106d071bddcb1e8f50d82e63cf2",
       "changed_from_release": [
         ".gitignore",
         "BUILD.md",
