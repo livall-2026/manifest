@@ -134,10 +134,11 @@
         "tests/pmu/upstream-upgrade-20261019.json",
         "tests/pmu/validate_pre_sync.py"
       ],
-      "commit": "70ec2ea52634d106d071bddcb1e8f50d82e63cf2",
+      "commit": "858e1bdad1a48690023f87edb8b15112ffe50c33",
       "changed_from_release": [
         ".gitignore",
         "BUILD.md",
+        "configs/k230d_canmv_bpi_zero_defconfig",
         "tests/pmu/pre-sync-rollback-state.json",
         "tests/pmu/pre-sync-rollback-validation.json",
         "tests/pmu/repair-validation-20261019.json",
