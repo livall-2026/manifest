@@ -59,8 +59,9 @@
         "de7faac",
         "f4a4aa8"
       ],
-      "commit": "d4da35320e4db23cabc82293595b7bfa20cd59b2",
+      "commit": "088f4024316d1145eea30b921ec55c77b0e66305",
       "changed_from_release": [
+        "kernel/bsp/maix3/components/CherryUSB/core/usbd_core.c",
         "kernel/bsp/maix3/components/Kconfig",
         "kernel/bsp/maix3/components/canmv_usb/usbd_adb.c",
         "kernel/bsp/maix3/components/canmv_usb/usbd_cdc.c",
@@ -93,9 +94,10 @@
       "files": [
         "arch/riscv/dts/k230d_canmv_bpi_zero.dts"
       ],
-      "commit": "4674cca5a9b90b0db5cd911b3b083cc708465a51",
+      "commit": "14c0fdc0a8285928b9b1bceae0308dcb0154d551",
       "changed_from_release": [
-        "arch/riscv/dts/k230d_canmv_bpi_zero.dts"
+        "arch/riscv/dts/k230d_canmv_bpi_zero.dts",
+        "board/kendryte/common/k230_boot.c"
       ]
     },
     {
@@ -134,7 +136,7 @@
         "tests/pmu/upstream-upgrade-20261019.json",
         "tests/pmu/validate_pre_sync.py"
       ],
-      "commit": "858e1bdad1a48690023f87edb8b15112ffe50c33",
+      "commit": "3540f9f0f782e1d1c8597feeed63b40ef2bc7e38",
       "changed_from_release": [
         ".gitignore",
         "BUILD.md",
@@ -143,9 +145,11 @@
         "tests/pmu/pre-sync-rollback-validation.json",
         "tests/pmu/repair-validation-20261019.json",
         "tests/pmu/storage-fix-state.json",
+        "tests/pmu/test_boot_preload.py",
         "tests/pmu/test_pmu_host.py",
         "tests/pmu/test_pmu_startup.py",
         "tests/pmu/test_usb_compiled.py",
+        "tests/pmu/test_usb_msos_requests.py",
         "tests/pmu/test_usb_rollback.py",
         "tests/pmu/upstream-upgrade-20261019.json",
         "tests/pmu/validate_pre_sync.py"
