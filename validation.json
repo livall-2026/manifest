@@ -1,0 +1,55 @@
+{
+  "branch": "livall-main",
+  "snapshot_date": "2026-10-20",
+  "repo_project_count": 24,
+  "full_build": "passed",
+  "latest_ancestry_verified": true,
+  "defconfig_reproduces_active_config": true,
+  "build_environment": "env -u DEBUG make; fresh output directory; obsolete generated MPP libraries archived",
+  "application_elf_bytes": 19339024,
+  "upstream_fixed_preload_layout": true,
+  "storage_policy": "Latest upstream driver; eMMC/1.8V retained, HS200 disabled, RTL8733BS SDIO1",
+  "tests": [
+    {
+      "test": "test_pmu_host.py",
+      "passed": true,
+      "output": "PMU host tests: sampled levels, rollover, notification, ownership, acknowledgement and key coexistence passed"
+    },
+    {
+      "test": "test_pmu_startup.py",
+      "passed": true,
+      "output": "INT4 startup wrapper tests passed"
+    },
+    {
+      "test": "test_usb_rollback.py",
+      "passed": true,
+      "output": "Compiled USB interfaces: [(0, 2, 2, 1), (1, 10, 0, 0), (2, 6, 1, 1), (3, 255, 66, 1)] endpoints: ['0x82', '0x1', '0x81', '0x3', '0x83', '0x84', '0x85', '0x5']\nCDC/MTP/ADB descriptor and actual class-init references passed\nFull-speed composite descriptor and bulk endpoint sizes passed"
+    },
+    {
+      "test": "test_boot_preload.py",
+      "passed": true,
+      "output": "k230_validate_image_layout: rtapp load range [0x5555000, 0x8168660) exceeds dram [0x0, 0x8000000)\nk230_validate_image_layout: rtapp load range [0x5555000, 0x67c6710) overlaps compressed source [0x5555000, 0x5556000)\nUpstream SPL layout accepts release ELF and rejects oversize and source overlap"
+    },
+    {
+      "test": "test_usb_msos_requests.py",
+      "passed": true,
+      "output": "MS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed\nMS OS properties interface selection and invalid-request tests passed"
+    }
+  ],
+  "both_firmware_slots_verified": true,
+  "image_embedded_revisions_verified": true,
+  "flashed": false,
+  "hardware_validation": false,
+  "artifacts": [
+    {
+      "name": "CanMV_K230D_Zero_livall_main_20261020.img",
+      "bytes": 671088640,
+      "sha256": "8dacd8e6b5fe52735a28061dc52c24107a29c57ddf8194c073d55c3faaa884b2"
+    },
+    {
+      "name": "CanMV_K230D_Zero_livall_main_20261020.img.gz",
+      "bytes": 334656132,
+      "sha256": "f08adaa529695b71addfbb1a6c793ffd0a06373e4ba689c86ce705a031167568"
+    }
+  ]
+}
