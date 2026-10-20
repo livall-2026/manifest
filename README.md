@@ -59,6 +59,23 @@ the former development checkout are outside this release manifest.
 | `src/rtsmart/libs` | [k230_rtsmart_lib](https://github.com/livall-2026/k230_rtsmart_lib) | canmv-k230/k230_rtsmart_lib |
 | `src/rtsmart/examples` | [k230_rtsmart_examples](https://github.com/livall-2026/k230_rtsmart_examples) | canmv-k230/k230_rtsmart_examples |
 
+## Boot and Windows enumeration fixes
+
+The first customized v1.8 image was tested on a 128 MiB board and failed in
+SPL before RT-Smart started. Its 44 MiB application ELF exceeded the fixed
+upper-third preload window (about 42.7 MiB). SPL now chooses a page-aligned
+preload address that fits the actual ELF, while retaining DRAM-bound and
+compressed-source-overlap validation.
+
+The ADB Windows MS OS property table now uses its actual composite interface
+number. Invalid or absent interface properties are rejected without reading
+past the table. Regression tests exercise real SPL functions and both USB
+descriptor modes.
+
+Use the image with `bootfix` in its name. The earlier image without that
+suffix is superseded. The fixed image still requires hardware boot and USB
+enumeration verification; successful compilation is not hardware validation.
+
 ## Validation
 
 The pre-sync, upstream-upgrade, repair and storage-fix reports under `tests/pmu`

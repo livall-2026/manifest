@@ -1,0 +1,20 @@
+Captured from the board's COM9 UART at 115200 baud:
+
+U-Boot SPL 2022.10-00001-g4674cca5 (Oct 20 2026 - 10:10:55 +0800)
+k230_validate_image_layout: rtapp load range [0x5555000, 0x8168660) exceeds dram [0xx, 0x0)
+_k230_load_img: invalid image layout for rtapp
+k230_load_img: load rtapp_a failed on slot A, try slot B
+k230_validate_image_layout: rtapp load range [0x5555000, 0x8168660) exceeds dram [0xx, 0x0)
+_k230_load_img: invalid image layout for rtapp
+k230_load_img: load rtapp_b failed on slot B, try slot A
+k230_run_system: k230_load_img fail: -1
+Trying to boot from MMC1
+** no mkimage signature but raw image not supported
+resetting ...
+reset not supported yet
+### ERROR ### Please RESET the board ###
+
+Windows observed Code 43 and USB\VID_0000&PID_0002, without a normal VID/PID.
+The invalid DRAM rendering in the log came from SPL's limited printf format;
+the board config is 128 MiB, and the host regression reproduces the range
+rejection with DRAM [0, 0x8000000). The fixed printf uses supported formats.
