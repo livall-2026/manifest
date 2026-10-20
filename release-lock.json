@@ -94,7 +94,7 @@
       "files": [
         "arch/riscv/dts/k230d_canmv_bpi_zero.dts"
       ],
-      "commit": "601f1301de584a4dd09c8e600164a813d1d7a621",
+      "commit": "2ef7f46e0247650e55a0d306dca236b29a5c414e",
       "changed_from_release": [
         "arch/riscv/dts/k230d_canmv_bpi_zero.dts",
         "board/kendryte/common/k230_boot.c"
@@ -136,7 +136,7 @@
         "tests/pmu/upstream-upgrade-20261019.json",
         "tests/pmu/validate_pre_sync.py"
       ],
-      "commit": "3540f9f0f782e1d1c8597feeed63b40ef2bc7e38",
+      "commit": "93c7d49069e690e6635a03fd73a05a46851ad2e1",
       "changed_from_release": [
         ".gitignore",
         "BUILD.md",

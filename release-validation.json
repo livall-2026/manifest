@@ -26,7 +26,7 @@
     {
       "test": "test_boot_preload.py",
       "passed": true,
-      "output": "k230_validate_image_layout: rtapp load range [0x5555000, 0x8168660) exceeds dram [0x0, 0x8000000)\nk230_validate_image_layout: rtapp load range [0x4000000, 0x8000000) overlaps compressed source [0x4000000, 0x5200000)\nSPL preload range tests passed, including actual ELF size and source overlap"
+      "output": "k230_validate_image_layout: rtapp load range [0x5555000, 0x8168660) exceeds dram [0x0, 0x8000000)\nk230_validate_image_layout: rtapp load range [0x5555000, 0x64634c8) overlaps compressed source [0x5555000, 0x5556000)\nUpstream SPL layout accepts release ELF and rejects oversize and source overlap"
     },
     {
       "test": "test_usb_msos_requests.py",
@@ -41,18 +41,20 @@
   "hardware_validation": false,
   "artifacts": [
     {
-      "name": "CanMV_K230D_Zero_livall_v1.8_bootfix_20261020.img",
+      "name": "CanMV_K230D_Zero_livall_v1.8_upstream_layout_20261020.img",
       "bytes": 650117120,
-      "sha256": "0a71b74627a4c597398a1adc3da0ed4845d5e951659a62192153207fd30269a0"
+      "sha256": "af4bf9b8ff96b3b3c6f88503bfb4dfc5dbf87680295d59ad4aeecea2ca94ca34"
     },
     {
-      "name": "CanMV_K230D_Zero_livall_v1.8_bootfix_20261020.img.gz",
-      "bytes": 327063987,
-      "sha256": "b412817fb2c5a4b861a43872c020a7c499fea1c0b70e8a9b4621873ca6a9a14f"
+      "name": "CanMV_K230D_Zero_livall_v1.8_upstream_layout_20261020.img.gz",
+      "bytes": 306901757,
+      "sha256": "3ecfee7b505d9e748a706a804805fe1e039ff9ff6ae8abb57ba997b7fb0aacaf"
     }
   ],
   "original_image_hardware_result": "Failed in SPL: rtapp preload exceeded 128 MiB DRAM; RT-Smart and USB never started",
-  "boot_preload_fix": "Fit actual rtapp ELF in DRAM while retaining compressed-source overlap rejection",
+  "boot_preload_fix": "Dynamic layout reverted: upstream fixed preload layout; DEBUG unset, release objects rebuilt and final ELF stripped",
+  "application_elf_bytes": 15787208,
+  "build_environment": "env -u DEBUG make; CanMV cache cleaned first",
   "windows_msos_fix": "Index ADB properties by the actual interface and reject invalid or absent requests",
   "fixed_image_hardware_result": "Not yet flashed or hardware tested"
 }

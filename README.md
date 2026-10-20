@@ -59,22 +59,25 @@ the former development checkout are outside this release manifest.
 | `src/rtsmart/libs` | [k230_rtsmart_lib](https://github.com/livall-2026/k230_rtsmart_lib) | canmv-k230/k230_rtsmart_lib |
 | `src/rtsmart/examples` | [k230_rtsmart_examples](https://github.com/livall-2026/k230_rtsmart_examples) | canmv-k230/k230_rtsmart_examples |
 
-## Boot and Windows enumeration fixes
+## Release build and Windows enumeration
 
-The first customized v1.8 image was tested on a 128 MiB board and failed in
-SPL before RT-Smart started. Its 44 MiB application ELF exceeded the fixed
-upper-third preload window (about 42.7 MiB). SPL now chooses a page-aligned
-preload address that fits the actual ELF, while retaining DRAM-bound and
-compressed-source-overlap validation.
+Build with `env -u DEBUG make`. If changing from a debug build, first run
+`env -u DEBUG make canmv-clean` to rebuild CanMV objects and relink. Any
+nonempty DEBUG value, including `release` or `0`, enables debug optimization
+and disables final ELF stripping in the upstream MicroPython rules.
 
-The ADB Windows MS OS property table now uses its actual composite interface
-number. Invalid or absent interface properties are rejected without reading
-past the table. Regression tests exercise real SPL functions and both USB
-descriptor modes.
+The first customized image failed in SPL because its unstripped 44 MiB ELF
+exceeded the 128 MiB board's 42.67 MiB preload window. The intervening
+dynamic-preload workaround has been reverted. Current U-Boot uses the
+upstream fixed preload layout; the stripped release ELF is validated
+against that original window.
 
-Use the image with `bootfix` in its name. The earlier image without that
-suffix is superseded. The fixed image still requires hardware boot and USB
-enumeration verification; successful compilation is not hardware validation.
+The ADB Windows MS OS property table retains its composite-interface
+indexing fix and invalid-interface request checks.
+
+Use the image with `upstream_layout` in its name. Both the original and
+`bootfix` images are superseded. The current image requires hardware boot
+and USB enumeration verification.
 
 ## Validation
 
