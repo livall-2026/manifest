@@ -1,56 +1,67 @@
-# LIVALL K230 multi-repository SDK
+# LIVALL CanMV K230 v1.8
 
-This manifest preserves the source versions and local modifications from the
-existing K230 checkout. It is forked from canmv-k230/manifest. Only the SDK root
-and four modified source repositories are forked into livall-2026; all other
-dependencies are fetched directly from their official GitHub repositories.
+This branch uses the official CanMV K230 v1.8 multi-repository release as its
+base, retaining LIVALL board, PMU and USB customizations. `release-bases.xml`
+preserves the official release manifest used for the migration.
 
-## Download the reproducible snapshot
+## Download
 
-Run these commands in a new, empty directory, using the existing `repo` launcher
-(or substitute `k230 repo` if that is your installed launcher):
+Start in a new directory:
 
 ```sh
-mkdir livall-k230
-cd livall-k230
-repo init -u https://github.com/livall-2026/manifest -b livall -m default.xml \
+mkdir livall-k230-v1.8
+cd livall-k230-v1.8
+repo init -u https://github.com/livall-2026/manifest -b livall-v1.8 -m default.xml \
   --repo-url=https://github.com/canmv-k230/git-repo.git --repo-branch stable
 repo sync -c -j4
 ```
 
-`default.xml` pins every project to a full commit SHA. `development.xml` keeps
-the five LIVALL projects on `refs/heads/livall` while pinning third-party
-dependencies. To follow LIVALL development, select `-m development.xml` during
-initialization. Do not run initialization or sync over an existing checkout
-with uncommitted changes.
+If your installed launcher is `k230 repo`, use that prefix instead of `repo`.
+`default.xml` pins all project commits. `development.xml` follows the six
+LIVALL source forks on `livall-v1.8`, keeping other dependencies pinned.
+The previous development snapshot is preserved on the `livall` branch.
 
-## Repository mapping
+## Preserved customizations
 
-| Checkout path | LIVALL fork | GitHub upstream | Preserved changes |
-| --- | --- | --- | --- |
-| `.` | [k230_rtos_sdk](https://github.com/livall-2026/k230_rtos_sdk) | [kendryte/k230_rtos_sdk](https://github.com/kendryte/k230_rtos_sdk) | PMU host regression tests |
-| `src/uboot/uboot` | [u-boot](https://github.com/livall-2026/u-boot) | [canmv-k230/u-boot](https://github.com/canmv-k230/u-boot) | BPI Zero MMC 1.8V |
-| `src/rtsmart/rtsmart` | [rtsmart](https://github.com/livall-2026/rtsmart) | [canmv-k230/rtsmart](https://github.com/canmv-k230/rtsmart) | Board config and PMU shutdown handshake |
-| `src/rtsmart/libs` | [k230_rtsmart_lib](https://github.com/livall-2026/k230_rtsmart_lib) | [canmv-k230/k230_rtsmart_lib](https://github.com/canmv-k230/k230_rtsmart_lib) | Polling PMU HAL APIs |
-| `src/canmv` | [canmv_k230](https://github.com/livall-2026/canmv_k230) | [kendryte/canmv_k230](https://github.com/kendryte/canmv_k230) | `machine.PMU` Python API |
+* K230D BPI Zero eMMC boot and fixed 1.8V configuration.
+* RTL8733BS Wi-Fi on SDIO1.
+* PMU INT4/PAD68 sampled shutdown request, application acknowledgement,
+  listener ownership and GPIO initialization guard.
+* PMU polling HAL and the `machine.PMU` MicroPython interface.
+* CDC/MTP/ADB composite USB descriptors and registration.
+* Existing local tests and historical migration/validation reports.
 
-The GitHub SDK and CanMV repository names differ from the Gitee mirror names:
-the Gitee root `canmv_k230` maps to `kendryte/k230_rtos_sdk`, and the Gitee
-`canmv` project maps to `kendryte/canmv_k230`.
+At the user's request, SDIO/MMC sources are the official v1.8 implementations
+and HS200 is disabled. Enabling HS200 again requires a separate driver change
+and hardware validation.
 
-## Development and upstream updates
+## Compatibility backports
 
-The default branch on all LIVALL forks is `livall`. After a snapshot checkout,
-create a topic branch in the project being changed (`repo start <topic> <path>`)
-and push that project to its LIVALL fork. Update its SHA in `default.xml` only
-after testing the combined SDK. Upstream changes can be fetched from the
-GitHub parent and merged into the LIVALL branch; the GitHub fork relationship
-is retained.
+The local PMU features rely on the newer shutdown/wakeup contract. Two focused
+upstream PMU changes are backported into the v1.8 kernel and HAL, together with
+the matching PMU example updates. No unrelated main-branch changes are merged.
+`release-lock.json` records exact release bases, backports and final commits.
 
-Validation before migration: existing `python3 tests/pmu/test_pmu_host.py`
-passed, and all pre-migration project commits were verified through the GitHub
-API. A full firmware build and hardware validation were not performed.
+The MicroPython release tree has a gitlink to `lib/mynewt-nimble` at
+`42849560ba7906f023f61e5f7ff3709ba2c1dfca`, which the official release manifest
+omits. This manifest explicitly checks out that same upstream commit to retain
+a complete MicroPython source tree. The other three extra repositories from
+the former development checkout are outside this release manifest.
 
-`migration-lock.json` records original commits, migrated commits, changed
-files and the upstream manifest commit. Build outputs, toolchains and ignored
-local files are not part of this source snapshot.
+## Source forks
+
+| Checkout path | LIVALL fork | Upstream |
+| --- | --- | --- |
+| `.` | [k230_rtos_sdk](https://github.com/livall-2026/k230_rtos_sdk) | kendryte/k230_rtos_sdk |
+| `src/canmv` | [canmv_k230](https://github.com/livall-2026/canmv_k230) | kendryte/canmv_k230 |
+| `src/uboot/uboot` | [u-boot](https://github.com/livall-2026/u-boot) | canmv-k230/u-boot |
+| `src/rtsmart/rtsmart` | [rtsmart](https://github.com/livall-2026/rtsmart) | canmv-k230/rtsmart |
+| `src/rtsmart/libs` | [k230_rtsmart_lib](https://github.com/livall-2026/k230_rtsmart_lib) | canmv-k230/k230_rtsmart_lib |
+| `src/rtsmart/examples` | [k230_rtsmart_examples](https://github.com/livall-2026/k230_rtsmart_examples) | canmv-k230/k230_rtsmart_examples |
+
+## Validation
+
+The pre-sync, upstream-upgrade, repair and storage-fix reports under `tests/pmu`
+are historical records, not validation results for this branch. The current
+release migration checks are recorded in `release-validation.json`.
+Hardware validation and flashing are separate from source and build checks.
